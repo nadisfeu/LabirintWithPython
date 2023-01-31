@@ -30,7 +30,7 @@ class Funcoes:
                 matrix[i].append(1) 
         return matrix
         
-    def adjacency_matrix_to_list(self, adj_matrix):
+    def matrix_to_list(self, adj_matrix):
         adj_list = []
         for i in range(len(adj_matrix)):
             vertex = [j for j, x in enumerate(adj_matrix[i]) if x == 1 or x == 2]
