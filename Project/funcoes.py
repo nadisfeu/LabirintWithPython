@@ -23,8 +23,12 @@ class Funcoes:
     def txt_to_matriz(self): 
         matrix = []
         for line in self.lines:
-            row = [1 if c == ' ' else 2 if c in ['S', 'E'] else 0 for c in line.strip()]
+            row = [1 if c in [' ', '/0'] else 2 if c in ['S', 'E'] else 0 for c in line]
             matrix.append(row)
+
+        for i in range(len(matrix)):
+            while len(matrix[i]) != len(matrix[0]):
+                matrix[i].append(1) 
         return matrix
         
 
