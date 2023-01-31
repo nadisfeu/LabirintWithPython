@@ -1,6 +1,5 @@
 
 class Funcoes:
-
     def __init__(self, file_path):
         self.file = open(file_path, 'r')             # Abre o txt
         self.file_content = self.file.read()         # Devolve o conteudo do txt
@@ -31,6 +30,16 @@ class Funcoes:
                 matrix[i].append(1) 
         return matrix
         
+    def adjacency_matrix_to_list(self, adj_matrix):
+        adj_list = []
+        for i in range(len(adj_matrix)):
+            vertex = [j for j, x in enumerate(adj_matrix[i]) if x == 1 or x == 2]
+            if 2 in adj_matrix[i]:
+                vertex.insert(0, "entry")
+                vertex.append("exit")
+            adj_list.append(vertex)
+        return adj_list
+
 
 
 
