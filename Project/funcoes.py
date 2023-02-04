@@ -64,6 +64,6 @@ class Funcoes:
                             self.start = node+1
                         if matrix[i][j + 1] == 3:
                             self.end = node+1
-                        self.graph.add_undirected_edge(node + (len(self.lines[0])), node)  # verifica embaixo
+                        self.graph.add_undirected_edge(node, node + 1)  # verifica embaixo
                 node += 1
 
