@@ -70,7 +70,7 @@ class Graph:
         return g2
 
     def subgraph(self, g2):
-        if g2.node_count > self.node_count or g2.edge_count > self.edge_count:
+        if g2.elements_count > self.node_count or g2.edge_count > self.edge_count:
             return False
         for u in range(len(g2.adj_list)):
             for v in g2.adj_list[u]:

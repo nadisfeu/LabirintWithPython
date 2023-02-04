@@ -1,9 +1,11 @@
 from funcoes import Funcoes
 
-file_path =  'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Anexos/maze/maze3.txt'
+file_path = r'Anexo/maze/maze3.txt'
 f = Funcoes(file_path)
 f.print_file()
-print(f.txt_to_matriz())
+for i in f.txt_to_matriz():
+    print(i)
+print("**********************")
+f.make_graph()
+print(f.graph)
 f.close_file()
-
-
