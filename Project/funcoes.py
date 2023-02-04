@@ -1,13 +1,18 @@
+from graph import Graph
 
 class Funcoes:
+
     def __init__(self, file_path):
         self.file = open(file_path, 'r')             # Abre o txt
         self.file_content = self.file.read()         # Devolve o conteudo do txt
         self.lines = self.file_content.splitlines()  # Transforma cada linha em um elemento na lista
         self.num_lines = len(self.lines)             # Devolve o numero de linhas
-        self.node = self.node_count()               # Devolve o numero de vertices
+        self.element = self.elements_count()               # Devolve o numero de vertices
+        self.graph = Graph(self.element)
+        self.start, self.end = None, None
 
-    def node_count(self) -> int:
+
+    def elements_count(self) -> int:
         count = 0
         for line in self.lines:
             count = count + len(line)
@@ -22,33 +27,43 @@ class Funcoes:
     def txt_to_matriz(self): 
         matrix = []
         for line in self.lines:
-            row = [1 if c in [' ', '/0'] else 2 if c in ['S', 'E'] else 0 for c in line]
+            row = [1 if c == ' ' else 2 if c in ['S'] else 3 if c in ['E'] else 0 for c in line.strip()]
             matrix.append(row)
-
-        for i in range(len(matrix)):
-            while len(matrix[i]) != len(matrix[0]):
-                matrix[i].append(1) 
         return matrix
-        
-    def matrix_to_list(self, adj_matrix):
-        adj_list = []
-        for i in range(len(adj_matrix)):
-            vertex = [j for j, x in enumerate(adj_matrix[i]) if x == 1 or x == 2]
-            if 2 in adj_matrix[i]:
-                vertex.insert(0, "entry")
-                vertex.append("exit")
-            adj_list.append(vertex)
-        return adj_list
+    
+    def make_graph(self):
+        # olhar no de baixo e no do lado direito, linha por linha e fazer as ligações
+        # se for 1, se for 0, ignora, olhar pela matriz ou direto no txt
+        # ou fz todas as ligações laterais, dps verticais
+        node = 0
+        matrix = self.txt_to_matriz()
 
-
-
-
-
-
-
-
-
-
-
-
+        for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
+            for j in range(len(self.lines[0]) - 1):  # pega a quantidade de colunas
+                if matrix[i][j] != 0:
+                    if matrix[i - 1][j] != 0:
+                        if matrix[i - 1][j] == 2:
+                            self.start = node
+                        if matrix[i - 1][j]== 3:
+                            self.end = node
+                        self.graph.add_undirected_edge(node-1, node)
+                    if matrix[i + 1][j] != 0:
+                        if matrix[i + 1][j] == 2:
+                            self.start = node
+                        if matrix[i + 1][j] == 3:
+                            self.end = node
+                        self.graph.add_undirected_edge(node, node + (len(self.lines[0]))) 
+                    if matrix[i][j - 1] != 0:
+                        if matrix[i][j - 1] == 2:
+                            self.start = node-1
+                        if matrix[i][j - 1] == 3:
+                            self.end = node-1
+                        self.graph.add_undirected_edge(node, node-1)
+                    if matrix[i][j + 1] != 0:
+                        if matrix[i][j + 1] == 2:
+                            self.start = node+1
+                        if matrix[i][j + 1] == 3:
+                            self.end = node+1
+                        self.graph.add_undirected_edge(node + (len(self.lines[0])), node)  # verifica embaixo
+                node += 1
 
