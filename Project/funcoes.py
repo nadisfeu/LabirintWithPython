@@ -36,9 +36,11 @@ class Funcoes:
         # ou fz todas as ligações laterais, dps verticais
         node = 0
         matrix = self.txt_to_matriz()
+        count1 = self.num_lines - 1
+        count2 = len(self.lines[0])
 
-        for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
-            for j in range(len(self.lines[0]) - 1):  # pega a quantidade de colunas
+        for i in range(count1):  # pega a quantidade de linhas, menos a ultima
+            for j in range(count2):  # pega a quantidade de colunas
                 if matrix[i][j] == 1:
                     if matrix[i][j+1] == 1:
                         self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
@@ -46,7 +48,7 @@ class Funcoes:
                         self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
                 node += 1
 
-        for c in range(len(self.lines[0]) - 1):  # especial pra ultima linha que nao tem embaixo
-            if matrix[self.num_lines - 1][c] == 1:
-                if matrix[self.num_lines - 1][c+1] == 1:
-                    self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
+        # for c in range(len(self.lines[0]) - 1):  # especial pra ultima linha que nao tem embaixo
+        #     if matrix[self.num_lines - 1][c] == 1:
+        #         if matrix[self.num_lines - 1][c+1] == 1:
+        #             self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
