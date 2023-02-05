@@ -131,7 +131,6 @@ class Graph:
             if path[i + 1] not in self.adj_list[path[i]] or path.count(path[i]) > 1 or path.count(path[i + 1]) > 1:
                 return False
         return True
-    
 
     def __str__(self):
         repr = ""
