@@ -36,25 +36,23 @@ class Funcoes:
         # se for 1, se for 0, ignora, olhar pela matriz ou direto no txt
         # ou fz todas as ligações laterais, dps verticais
         node = 0
-        matrix = self.txt_to_matriz()
 
         for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
-            for j in range(len(self.lines[0])):  # pega a quantidade de colunas
-                if matrix[i][j] != 0:
-                    if matrix[i][j] != 0:
-                        if matrix[i][j] == 2:
+            for j in range(len(self.lines[i])):  # pega a quantidade de colunas
+                if self.lines[i][j] != '#':
+                    if self.lines[i][j] != '#':
+                        if self.lines[i][j] == 'S':
                             self.start = node
-                        if matrix[i][j] == 3:
+                        if self.lines[i][j] == 'E':
                             self.end = node
                         self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
-                    if matrix[i+1][j] != 0:
-                        if matrix[i + 1][j] == 2:
+                    if self.lines[i + 1][j] != '#':
+                        if self.lines[i+1][j] == 'E':
                             self.start = node
-                        if matrix[i + 1][j]== 3:
+                        if self.lines[i+1][j] == 'S':
                             self.end = node
                         self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
                 node += 1
-
 
 
 
