@@ -7,6 +7,9 @@ class Graph:
         if adj_list == []:
             for i in range(self.node_count):
                 self.adj_list.append([])
+    
+    def get_neighbors(self, v):
+        return self.adj_list[v]
 
     def add_directed_edge(self, u: int, v: int):
         if u < 0 or u >= len(self.adj_list) or v < 0 or v >= len(self.adj_list):
@@ -128,6 +131,7 @@ class Graph:
             if path[i + 1] not in self.adj_list[path[i]] or path.count(path[i]) > 1 or path.count(path[i + 1]) > 1:
                 return False
         return True
+    
 
     def __str__(self):
         repr = ""
