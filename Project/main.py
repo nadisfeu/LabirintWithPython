@@ -22,7 +22,7 @@ def busca(graph, start, end, visited=None):
     return None
 
 
-file_path =  'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Anexo/maze/maze3.txt'
+file_path =  'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Anexo/maze/maze10.txt'
 f = Funcoes(file_path)
 f.print_file()
 for i in f.txt_to_matriz():

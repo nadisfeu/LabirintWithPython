@@ -39,31 +39,27 @@ class Funcoes:
         matrix = self.txt_to_matriz()
 
         for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
-            for j in range(len(self.lines[0]) - 1):  # pega a quantidade de colunas
+            for j in range(len(self.lines[0])):  # pega a quantidade de colunas
                 if matrix[i][j] != 0:
-                    if matrix[i - 1][j] != 0:
-                        if matrix[i - 1][j] == 2:
+                    if matrix[i][j] != 0:
+                        if matrix[i][j] == 2:
                             self.start = node
-                        if matrix[i - 1][j]== 3:
+                        if matrix[i][j] == 3:
                             self.end = node
-                        self.graph.add_undirected_edge(node-1, node)
-                    if matrix[i + 1][j] != 0:
+                        self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
+                    if matrix[i+1][j] != 0:
                         if matrix[i + 1][j] == 2:
                             self.start = node
-                        if matrix[i + 1][j] == 3:
+                        if matrix[i + 1][j]== 3:
                             self.end = node
-                        self.graph.add_undirected_edge(node, node + (len(self.lines[0]))) 
-                    if matrix[i][j - 1] != 0:
-                        if matrix[i][j - 1] == 2:
-                            self.start = node-1
-                        if matrix[i][j - 1] == 3:
-                            self.end = node-1
-                        self.graph.add_undirected_edge(node, node-1)
-                    if matrix[i][j + 1] != 0:
-                        if matrix[i][j + 1] == 2:
-                            self.start = node+1
-                        if matrix[i][j + 1] == 3:
-                            self.end = node+1
-                        self.graph.add_undirected_edge(node, node + 1)  # verifica embaixo
+                        self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
                 node += 1
 
+
+
+
+
+
+
+
+                    
