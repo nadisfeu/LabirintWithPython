@@ -2,7 +2,7 @@ from funcoes import Funcoes
 from funcoes import busca
 
 
-file_path =  'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Anexo/maze/toy.txt'
+file_path = 'C:/01 eu/02_programação/LabirintWithPython/Anexo/maze/maze3_blocks.txt'
 f = Funcoes(file_path)
 f.print_file()
 print("**********************")
