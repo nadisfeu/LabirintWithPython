@@ -60,13 +60,11 @@ class Funcoes:
 
         for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
             for j in range(len(self.lines[i])):  # pega a quantidade de colunas
-                if self.lines[i][j] == ' ':
-                    if j + 1 > len(self.lines[i]):
-                        pass
-                    elif self.lines[i][j + 1] == ' ':
-                        self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
-                    if self.lines[i + 1][j] == ' ':
+
+                if self.lines[i][j] != '#':
+                    if j + 1 < len(self.lines[i]):
+                        if self.lines[i][j + 1] != '#':
+                            self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
+                    if self.lines[i + 1][j] != '#':
                         self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
                 node += 1
-
-
