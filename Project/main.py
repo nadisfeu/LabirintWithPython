@@ -6,6 +6,6 @@ f.print_file()
 for i in f.txt_to_matriz():
     print(i)
 print("**********************")
-f.make_graph()
+f.make_graph2()
 print(f.graph)
 f.close_file()

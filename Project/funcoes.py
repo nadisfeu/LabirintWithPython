@@ -42,7 +42,9 @@ class Funcoes:
         for i in range(count1):  # pega a quantidade de linhas, menos a ultima
             for j in range(count2):  # pega a quantidade de colunas
                 if matrix[i][j] == 1:
-                    if matrix[i][j+1] == 1:
+                    if j + 1 > count2:
+                        pass
+                    elif matrix[i][j+1] == 1:
                         self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
                     if matrix[i+1][j] == 1:
                         self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
@@ -52,3 +54,19 @@ class Funcoes:
         #     if matrix[self.num_lines - 1][c] == 1:
         #         if matrix[self.num_lines - 1][c+1] == 1:
         #             self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
+
+    def make_graph2(self):
+        node = 0
+
+        for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
+            for j in range(len(self.lines[i])):  # pega a quantidade de colunas
+                if self.lines[i][j] == ' ':
+                    if j + 1 > len(self.lines[i]):
+                        pass
+                    elif self.lines[i][j + 1] == ' ':
+                        self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
+                    if self.lines[i + 1][j] == ' ':
+                        self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
+                node += 1
+
+
