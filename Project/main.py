@@ -1,16 +1,5 @@
 from funcoes import Funcoes
 
-<<<<<<< HEAD
-file_path = r'Anexo/maze/toy.txt'
-f = Funcoes(file_path)
-f.print_file()
-for i in f.txt_to_matriz():
-    print(i)
-print("**********************")
-f.make_graph2()
-print(f.graph)
-=======
-
 def busca(graph, start, end, visited=None):
     if visited is None:
         visited = set()
@@ -32,7 +21,7 @@ def busca(graph, start, end, visited=None):
     return None
 
 
-file_path =  'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Anexo/maze/toy.txt'
+file_path =  'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Anexo/maze/maze3.txt'
 f = Funcoes(file_path)
 f.print_file()
 print("**********************")
@@ -42,5 +31,4 @@ print("**********************")
 print(f.start)
 print(f.end)
 print(busca(f.graph, f.start, f.end))
->>>>>>> feature/grazi
 f.close_file()
