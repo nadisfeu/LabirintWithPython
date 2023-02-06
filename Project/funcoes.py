@@ -6,18 +6,11 @@ class Funcoes:
     def __init__(self, file_path):
         self.file = open(file_path, 'r')                            # Abre o txt
         self.file_content = self.file.read()                        # Devolve o conteudo do txt
-        self.file_content = self.replace_to(self.file_content)      # transforma os blocos em cerquilhas
         self.lines = self.file_content.splitlines()                 # Transforma cada linha em um elemento na lista
         self.num_lines = len(self.lines)                            # Devolve o numero de linhas
         self.element = self.elements_count()                        # Devolve o numero de vertices
         self.graph = Graph(self.element)                            # Cria um grafo pra função
         self.start, self.end = None, None
-
-    @staticmethod
-    def replace_to(txt=str) -> str:
-        if 'â–ˆ' in txt:
-            txt = txt.replace('â–ˆ', '#')
-        return txt
 
     def elements_count(self) -> int:
         count = 0
@@ -41,11 +34,10 @@ class Funcoes:
                     if self.lines[i][j] == 'E':
                         self.end = node
                     if j+1 < len(self.lines[i]):
-                        if self.lines[i][j+1] != '#':
-                            self.graph.add_undirected_edge(node, node + 1)  # verifica a direita
-                    if i+1 < (self.num_lines - 1):
-                        if self.lines[i + 1][j] != '#':
-                            self.graph.add_undirected_edge(node, node + (len(self.lines[0])))  # verifica embaixo
+                        if self.lines[i][j+1] != '#':           # verifica a direita
+                            self.graph.add_undirected_edge(node, node + 1)
+                    if self.lines[i + 1][j] != '#':         # verifica embaixo
+                        self.graph.add_undirected_edge(node, node + (len(self.lines[0])))
                     node += 1
 
 
