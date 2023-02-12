@@ -2,7 +2,8 @@ from funcoes import Funcoes
 from funcoes import busca
 
 
-file_path = 'C:/Users/grazi/OneDrive/Área de Trabalho/Arquivos/LabirintWithPython/Project/Anexo/maze/maze3.txt'
+arquivo = input("Digite o arquivo que deseja tertar:\nExemplo: " + "maze3\n").lower().replace(" ", "")
+file_path = 'Anexo/maze/' + arquivo + '.txt'
 f = Funcoes(file_path)
 f.print_file()
 print("**********************")
@@ -12,4 +13,3 @@ print("**********************")
 print(f.start)
 print(f.end)
 print(busca(f.graph, f.start, f.end))
-f.close_file()

@@ -4,12 +4,13 @@ from graph import Graph
 class Funcoes:
 
     def __init__(self, file_path):
-        self.file = open(file_path, 'r')                            # Abre o txt
-        self.file_content = self.file.read()                        # Devolve o conteudo do txt
-        self.lines = self.file_content.splitlines()                 # Transforma cada linha em um elemento na lista
-        self.num_lines = len(self.lines)                            # Devolve o numero de linhas
-        self.element = self.elements_count()                        # Devolve o numero de vertices
-        self.graph = Graph(self.element)                            # Cria um grafo pra função
+        self.file = open(file_path, 'r')  # Abre o txt
+        self.file_content = self.file.read()  # Devolve o conteudo do txt
+        self.file.close()                     # Fecha o arquivo para liberar memoria
+        self.lines = self.file_content.splitlines()  # Transforma cada linha em um elemento na lista
+        self.num_lines = len(self.lines)  # Devolve o numero de linhas
+        self.element = self.elements_count()  # Devolve o numero de vertices
+        self.graph = Graph(self.element)  # Cria um grafo pra função
         self.start, self.end = None, None
 
     def elements_count(self) -> int:
@@ -21,9 +22,6 @@ class Funcoes:
     def print_file(self):
         print(self.file_content)
 
-    def close_file(self):
-        self.file.close()
-
     def make_graph(self):
         node = 0
         for i in range(self.num_lines - 1):  # pega a quantidade de linhas, menos a ultima
@@ -33,12 +31,12 @@ class Funcoes:
                         self.start = node
                     if self.lines[i][j] == 'E':
                         self.end = node
-                    if j+1 < len(self.lines[i]):
-                        if self.lines[i][j+1] != '#':           # verifica a direita
+                    if j + 1 < len(self.lines[i]):
+                        if self.lines[i][j + 1] != '#':  # verifica a direita
                             self.graph.add_undirected_edge(node, node + 1)
-                    if self.lines[i + 1][j] != '#':         # verifica embaixo
+                    if self.lines[i + 1][j] != '#':  # verifica embaixo
                         self.graph.add_undirected_edge(node, node + (len(self.lines[0])))
-                    node += 1
+                node += 1
 
 
 def busca(graph, start, end, visited=None):
@@ -58,5 +56,5 @@ def busca(graph, start, end, visited=None):
             # Se a busca retornou um caminho válido, adiciona o vértice atual ao caminho
             if path is not None:
                 return [start] + path
-    # Se não há um caminho válido a partir do vértice atual, retorna None
+        # Se não há um caminho válido a partir do vértice atual, retorna None
     return None
