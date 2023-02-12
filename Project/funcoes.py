@@ -12,6 +12,7 @@ class Funcoes:
         self.element = self.elements_count()  # Devolve o numero de vertices
         self.graph = Graph(self.element)  # Cria um grafo pra função
         self.start, self.end = None, None
+        self.coordenad = [[] for _ in range(self.elements_count())]
 
     def elements_count(self) -> int:
         count = 0
@@ -36,7 +37,19 @@ class Funcoes:
                             self.graph.add_undirected_edge(node, node + 1)
                     if self.lines[i + 1][j] != '#':  # verifica embaixo
                         self.graph.add_undirected_edge(node, node + (len(self.lines[0])))
+                self.coordenad[node] = [i, j]
                 node += 1
+
+    def print_coordinates_path(self):
+        path = busca(self.graph, self.start, self.end)
+
+        if path is None:
+            return "Não existe caminho de saída"
+
+        p = ""
+        for s in path:
+            p = p + str(self.coordenad[s])
+        return p
 
 
 def busca(graph, start, end, visited=None):
