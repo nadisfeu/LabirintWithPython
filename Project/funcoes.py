@@ -1,8 +1,6 @@
 from graph import Graph
 
-
 class Funcoes:
-
     def __init__(self, file_path):
         self.file = open(file_path, 'r')  # Abre o txt
         self.file_content = self.file.read()  # Devolve o conteudo do txt
@@ -12,7 +10,7 @@ class Funcoes:
         self.element = self.elements_count()  # Devolve o numero de vertices
         self.graph = Graph(self.element)  # Cria um grafo pra função
         self.start, self.end = None, None
-        self.coordenad = [[] for _ in range(self.elements_count())]
+        self.coordenad = [[] for i in range(self.elements_count())]
 
     def elements_count(self) -> int:
         count = 0
@@ -50,7 +48,6 @@ class Funcoes:
         for s in path:
             p = p + str(self.coordenad[s])
         return p
-
 
 def busca(graph, start, end, visited=None):
     if visited is None:
