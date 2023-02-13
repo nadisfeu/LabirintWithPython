@@ -16,8 +16,8 @@ while arquivo!=0:
     #print("--------------------------------------")
     print("Entrada labirinto:", f.start)
     print("Saida labirinto:", f.end)
-    print(f.print_coordinates_path())
-    print(busca(f.graph, f.start, f.end))
+    print("Caminho:", busca(f.graph, f.start, f.end))
+    print("Coordenadas:", f.print_coordinates_path())
     end = time.time()
     tempo_de_execucao = end - start
     print("Tempo de execução:", tempo_de_execucao, "segundos\n")

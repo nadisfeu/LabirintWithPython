@@ -39,15 +39,15 @@ class Funcoes:
                 node += 1
 
     def print_coordinates_path(self):
+        tamanho_da_linha = self.num_lines
         path = busca(self.graph, self.start, self.end)
 
         if path is None:
             return "Não existe caminho de saída"
 
-        p = ""
-        for s in path:
-            p = p + str(self.coordenad[s])
-        return p
+        coordenadas = [(i // tamanho_da_linha, i % tamanho_da_linha) for i in path]
+        return coordenadas
+
 
 def busca(graph, start, end, visited=None):
     if visited is None:
