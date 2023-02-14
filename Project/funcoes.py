@@ -9,7 +9,7 @@ class Funcoes:
         self.lines = self.file_content.splitlines()  # Transforma cada linha em um elemento na lista
         self.num_lines = len(self.lines)  # Devolve o numero de linhas
         self.element = self.elements_count()  # Devolve o numero de vertices
-        self.graph = Graph(self.element)  # Cria um grafo pra função
+        self.graph = Graph(self.element, adj_list=[])  # Cria um grafo pra função
         self.start, self.end = None, None
 
     def elements_count(self) -> int:
