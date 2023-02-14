@@ -1,5 +1,3 @@
-import os
-
 from funcoes import *
 import time
 
